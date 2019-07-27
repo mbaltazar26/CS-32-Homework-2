@@ -3,10 +3,10 @@
 //  Homework 3
 //
 //  Created by Michaella Baltazar on 7/22/19.
-//  Copyright Â© 2019 Michaella Baltazar. All rights reserved.
+//  Copyright © 2019 Michaella Baltazar. All rights reserved.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
 #include <iostream>
 #include <string>
 //using std::string;
@@ -16,14 +16,14 @@ using namespace std;
 // using only repeated addition.
 int prod(unsigned int m, unsigned int n)
 {
-    if (n==0)
-    {
-        return 0;
-    }
-    else
-    {
-        return m + prod(m, n-1);
-    }
+	if (n == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return m + prod(m, n - 1);
+	}
 }
 
 
@@ -38,22 +38,22 @@ int prod(unsigned int m, unsigned int n)
 //
 int numberOfDigits(int num, int digit)
 {
-    if (num <10)
-    {
-        if (num == digit)
-            return 1;
-        else
-            return 0;
-    }
-    else if (num%10==digit)
-    {
-            return (numberOfDigits(num/10, digit) + 1);
-    }
-    else
-    {
-            return numberOfDigits(num/10,digit);
-    }
-    //return -1;  // This is incorrect.
+	if (num <10)
+	{
+		if (num == digit)
+			return 1;
+		else
+			return 0;
+	}
+	else if (num % 10 == digit)
+	{
+		return (numberOfDigits(num / 10, digit) + 1);
+	}
+	else
+	{
+		return numberOfDigits(num / 10, digit);
+	}
+	//return -1;  // This is incorrect.
 }
 
 
@@ -66,58 +66,66 @@ int numberOfDigits(int num, int digit)
 //    doubleDouble("aaaa")    => "a22a22a22a"
 //
 string doubleDouble(string n)
-//    if (n.length()>3)
-//    {
-//        return doubleDouble(n.substr(0, n.length()/2)) + doubleDouble(n.substr(n.length()/2));
-//    }
-//    else if (n.length()==2)
-//    {
-//        if (n.at(0)==n.at(1))
-//        {
-//            return n.substr(0,1)+ "22" +n.substr(1);
-//        }
-//        else return n;
-//    }
-//    else if (n.length()==3)
-//    {
-//        if (n.at(0) == n.at(1) == n.at(2))
-//        {
-//            return n.substr(0,1)+ "22" +n.substr(1,2) + "22" + n.substr(2);
-//        }
-//        else if (n.at(0)==n.at(1))
-//        {
-//            return n.substr(0,1)+ "22" +n.substr(1);
-//        }
-//        else if (n.at(1)==n.at(2))
-//        {
-//            return n.substr(0,2)+ "22" +n.substr(2);
-//        }
-//        else
-//        {
-//            return n;
-//        }
-//    }
 {
-    if (n.length() <= 1)
-    {
-        return n;
-    }
-    else if (n.length() == 2)
-    {
-        if (n[0] == n[1])
-        {
-            return n.substr(0,1) + "22" + n.substr(1,1);
-        }
-        else
-        {
-            return n;
-        }
-    }
-    else
-    {
-        return doubleDouble(n.substr(0, 2)) + doubleDouble(n.substr(1));
-    }
+	if (n.length() > 3)
+	{
+		if (doubleDouble(n.substr(0, n.length() / 2))[doubleDouble(n.substr(0, n.length() / 2)).length() - 1] != doubleDouble(n.substr(n.length() / 2))[0])
+			return doubleDouble(n.substr(0, n.length() / 2)) + doubleDouble(n.substr(n.length() / 2));
+		else
+			return  doubleDouble(n.substr(0, n.length() / 2)) + "22" + doubleDouble(n.substr(n.length() / 2));
+	}
+	else if (n.length() == 2)
+	{
+		if (n.at(0) == n.at(1))
+		{
+			return n.substr(0, 1) + "22" + n.substr(1);
+		}
+		else return n;
+	}
+	else if (n.length() == 3)
+	{
+		if (n.at(0) == n.at(1) == n.at(2))
+		{
+			return n.substr(0, 1) + "22" + n.substr(1, 2) + "22" + n.substr(2);
+		}
+		else if (n.at(0) == n.at(1))
+		{
+			return n.substr(0, 1) + "22" + n.substr(1);
+		}
+		else if (n.at(1) == n.at(2))
+		{
+			return n.substr(0, 2) + "22" + n.substr(2);
+		}
+		else
+		{
+			return n;
+		}
+	}
 }
+/*
+{
+	if (n.length() <= 1)
+	{
+		return n;
+	}
+	else if (n.length() == 2)
+	{
+		if (n[0] == n[1])
+		{
+			return n.substr(0, 1) + "22" + n.substr(1, 1);
+		}
+		else
+		{
+			return n;
+		}
+	}
+	else
+	{
+		return doubleDouble(n.substr(0, 2)) + doubleDouble(n.substr(1));
+	}
+} 
+*/
+
 
 // str contains a single pair of curly brackets, return a new
 // string made of only the curly brackets and whatever those
@@ -131,22 +139,22 @@ string doubleDouble(string n)
 //
 string curlyFries(string str)
 {
-   if (str[0]!='{' && str[str.length()-1] != '}')
-   {
-        return curlyFries(str.substr((1), str.length()-2));
-   }
-   else if (str[0]!='{')
-   {
-        return curlyFries(str.substr(1));
-   }
-    else if (str[str.length()-1] != '}')
-    {
-        return curlyFries(str.substr(0, str.length()-2));
-    }
-    else                                //only if str[0] == '{' and str[length()-1] == '}'
-    {
-        return str;
-    }
+	if (str[0] != '{' && str[str.length() - 1] != '}')
+	{
+		return curlyFries(str.substr((1), str.length() - 1));
+	}
+	else if (str[0] != '{')
+	{
+		return curlyFries(str.substr(1));
+	}
+	else if (str[str.length() - 1] != '}')
+	{
+		return curlyFries(str.substr(0, str.length() - 1));
+	}
+	else                                //only if str[0] == '{' and str[length()-1] == '}'
+	{
+		return str;
+	}
 }
 
 
@@ -162,45 +170,45 @@ string curlyFries(string str)
 //
 bool addEmUp(const int a[], int size, int target)
 {
-    if (size == 0 && target == 0)
-    {
-        return true;
-    }
-    else if (size == 0 && target != 0)
-    {
-            return false;
-    }
-    else
-    {
-        return addEmUp(a+1, size - 1, target - a[0]) || addEmUp(a+1, size - 1, target);
-    }
-    //return false;  // This is not always correct.
+	if (size == 0 && target == 0)
+	{
+		return true;
+	}
+	else if (size == 0 && target != 0)
+	{
+		return false;
+	}
+	else
+	{
+		return addEmUp(a + 1, size - 1, target - a[0]) || addEmUp(a + 1, size - 1, target);
+	}
+	//return false;  // This is not always correct.
 }
 
 bool canWeFinish(string maze[], int nRows, int nCols, int sr, int sc, int er, int ec)
 {
-    if (sr > nRows || sc > nCols || er > nRows || ec > nCols )
-        return false;
-    if (sr == er && sc == ec)
-        return true;
-    maze [sr][sc]= '#';
-    if (maze[sr-1][sc] == '.')
-    {
-        return canWeFinish(maze, nRows, nCols, sr-1, sc, er, ec);
-    }
-    if (maze[sr+1][sc] == '.')
-    {
-        return canWeFinish(maze, nRows, nCols, sr+1, sc, er, ec);
-    }
-    if (maze[sr][sc-1] == '.')
-    {
-        return canWeFinish(maze, nRows, nCols, sr, sc-1, er, ec);
-    }
-    if (maze[sr][sc+1] == '.')
-    {
-        return canWeFinish(maze, nRows, nCols, sr, sc+1, er, ec);
-    }
-    return false;
+	if (sr > nRows || sc > nCols || er > nRows || ec > nCols)
+		return false;
+	if (sr == er && sc == ec)
+		return true;
+	maze[sr][sc] = '#';
+	if (maze[sr - 1][sc] == '.')
+	{
+		return canWeFinish(maze, nRows, nCols, sr - 1, sc, er, ec);
+	}
+	if (maze[sr + 1][sc] == '.')
+	{
+		return canWeFinish(maze, nRows, nCols, sr + 1, sc, er, ec);
+	}
+	if (maze[sr][sc - 1] == '.')
+	{
+		return canWeFinish(maze, nRows, nCols, sr, sc - 1, er, ec);
+	}
+	if (maze[sr][sc + 1] == '.')
+	{
+		return canWeFinish(maze, nRows, nCols, sr, sc + 1, er, ec);
+	}
+	return false;
 }
 
 
@@ -211,9 +219,33 @@ bool canWeFinish(string maze[], int nRows, int nCols, int sr, int sc, int er, in
 // Return true if there is a path from (sr,sc) to (er,ec)
 // through the maze; return false otherwise
 
-
-
+/*
 int main()
 {
-    cout << doubleDouble("abba") << endl;
+	cout << doubleDouble("abba") << endl;
+	cout << prod(6, 5) << endl;
+	cout << prod(1, 0) << endl;
+	cout << prod(0, 1) << endl; 
+	cout << numberOfDigits(123, 4) << endl;
+	cout << numberOfDigits(8, 4) << endl; 
+	cout << numberOfDigits(9, 9) << endl;
+	cout << numberOfDigits(124364, 4) << endl;
+	cout << numberOfDigits(14, 4) << endl;
+	cout << numberOfDigits(144, 4) << endl;
+	cout << numberOfDigits(424876, 4) << endl;  
+	cout << curlyFries("abc{ghj}789") << endl;
+	cout << curlyFries("{x}7") << endl;
+	cout << curlyFries("4agh{y}") << endl;
+	cout << curlyFries("4agh{}") << endl; 
+	int a[3] = { 2, 4, 8 };
+	int b[1] = {};
+	cout << addEmUp(a, 3, 10) << endl;
+	cout << addEmUp(a, 3, 6) << endl;
+	cout << addEmUp(a, 3, 11) << endl;
+	cout << addEmUp(a, 3, 0) << endl;
+	cout << addEmUp(a, 0, 0) << endl; 
+	cout << doubleDouble("goodbye") << endl;
+	cout << doubleDouble("yyuu") << endl;
+	cout << doubleDouble("aaaa") << endl;
 }
+*/
