@@ -179,31 +179,28 @@ bool addEmUp(const int a[], int size, int target)
 
 bool canWeFinish(string maze[], int nRows, int nCols, int sr, int sc, int er, int ec)
 {
-    maze[sr][sc]= '#';
-    if (sr==er && sc == ec)
-    {
-        return true;
-    }
-    if (sr > nRows || sc > nCols)
-    {
+    if (sr > nRows || sc > nCols || er > nRows || ec > nCols )
         return false;
-    }
-    if (maze[sr-1][sc] == ' ')
+    if (sr == er && sc == ec)
+        return true;
+    maze [sr][sc]= '#';
+    if (maze[sr-1][sc] == '.')
     {
         return canWeFinish(maze, nRows, nCols, sr-1, sc, er, ec);
     }
-    if (maze[sr+1][sc] == ' ')
+    if (maze[sr+1][sc] == '.')
     {
         return canWeFinish(maze, nRows, nCols, sr+1, sc, er, ec);
     }
-    if (maze[sr][sc-1] == ' ')
+    if (maze[sr][sc-1] == '.')
     {
         return canWeFinish(maze, nRows, nCols, sr, sc-1, er, ec);
     }
-    if (maze[sr][sc+1] == ' ')
+    if (maze[sr][sc+1] == '.')
     {
         return canWeFinish(maze, nRows, nCols, sr, sc+1, er, ec);
     }
+    return false;
 }
 
 
